@@ -155,8 +155,17 @@ public class Test {
             System.out.println();
             System.out.println();
 
-            for (int i = 0; i < s1; i++)
-                System.out.println("Преподаватель " + teachers[i].getSurname() + " " + teachers[i].getName() + " проводит занятия по " + subjects[i].getName() + " с " + groups[i].getName());
+            try(FileWriter writer = new FileWriter("result.txt", true)) {
+                for (int i = 0; i < s1; i++) {
+                    System.out.println("Преподаватель " + teachers[i].getSurname() + " " + teachers[i].getName() + " проводит занятия по " + subjects[i].getName() + " с " + groups[i].getName());
+                    writer.write("Преподаватель " + teachers[i].getSurname() + " " + teachers[i].getName() + " проводит занятия по " + subjects[i].getName() + " с " + groups[i].getName() + "\n");
+                }
+                writer.flush();
+            }
+            catch(IOException ex){
+
+                System.out.println(ex.getMessage());
+            }
         }
         else
             System.out.println("Невозможно составить расписание!");
